@@ -1,0 +1,37 @@
+Observations:
+Case 1 - a
+After running the analysis in Vtune 10 times, following execution times were obtained.
+
+Iteration 	Execution time (seconds)	Total Elapsed time (sec)
+1           	0.052	                    0.075
+2	            0.056	                    0.085
+3	            0.056                   	0.097
+4           	0.055                   	0.067
+5	            0.058	                    0.086
+6	            0.055                   	0.073
+7	            0.051                   	0.072
+8           	0.055	                    0.099
+9	            0.057                   	0.076
+10	          0.058                   	0.106
+
+
+ 
+
+Case 1 - b
+For same order of matrices in all iterations, the execution times that recorded were very close to each other but not accurately equal because
+	The random number generator i.e used to generate arbitrary matrix elements randomly instead of same elements generated repeatedly. Hence the overall execution time differs due to difference in calculations times.
+	Also the CPU L1 Data cache runs several other threads concurrently and so the amount of time required to empty those blocks of other threads varies every iteration with respect to every instant.
+
+
+
+Case 1 - c
+Difference between Linux Time method and Vtune Method of measurements-
+	In Linux time measurement the total execution time elapsed is a sum of CPU execution time and user time. Hence even for same order matrices with same data elements without random matrix elements generator, user data input time creates a big difference in total execution time.
+	Whereas in Vtune, since we perform analysis on an executable file containing static compiled data, thereby eliminating user input data times or in our case time required to generate random elements. Hence proper CPU time spent in the main loop can be determined more accurately than Linux Time method. 
+
+
+
+
+Case 1 - d
+The personal method used to compute execution times is by using time function in the program and including time header file. Basically, execution time is calculated using the following formula-
+Total Execution Time = (Total Number of clocks for entire program)/(Number of clocks per second)
